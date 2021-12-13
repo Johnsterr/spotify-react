@@ -1,4 +1,5 @@
 import { HomeIcon, SearchIcon, ViewBoardsIcon, PlusCircleIcon, HeartIcon } from "@heroicons/react/outline";
+import NavItem from "./NavItem";
 
 const activeNavItemClasses = "flex items-center text-white bg-[#282828] mx-2 px-4 py-2 rounded";
 const navItemClasses = "flex items-center hover:text-white mx-2 px-4 py-2 rounded duration-300";
@@ -35,10 +36,9 @@ function TheNav () {
   return (
     <nav>
       {navItems.map(({ classes, icon, label }) => (
-          <a href="/" className={classes} key={label}>
-            {icon}
-            <span className="ml-4 text-sm font-semibold">{label}</span>
-          </a>
+          <NavItem key={label} classes={classes} icon={icon}>
+            {label}
+          </NavItem>
         ),
       )}
     </nav>
