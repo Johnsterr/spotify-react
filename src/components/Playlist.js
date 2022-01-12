@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import PlaylistCover from "./PlaylistCover";
 import PlaylistButtonPlay from "./PlaylistButtonPlay";
 import PlaylistTitle from "./PlaylistTitle";
@@ -28,16 +30,32 @@ const menuItems = [
 ];
 
 function Playlist({ classes, coverUrl, title, description }) {
+  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
+
+  function openContextMenu(event) {
+    event.preventDefault();
+
+    setIsContextMenuOpen(true);
+  }
+  
   return (
-    <a href="/" className={`relative p-4 rounded-md bg-[#181818] hover:bg-[#272727] duration-200 group ${classes}`}>
+    <a
+      href="/"
+      className={`relative p-4 rounded-md bg-[#181818] hover:bg-[#272727] duration-200 group ${classes}`}
+      onContextMenu={openContextMenu}
+    >
       <div className="relative">
         <PlaylistCover url={coverUrl} />
         <PlaylistButtonPlay />
       </div>
       <PlaylistTitle title={title} />
       <PlaylistDescription description={description} />
-      <PlaylistContextMenu menuItems={menuItems}
-                           classes="absolute top-9 left-9 bg-[#282828] text-[#eaeaea] text-sm divide-y divide-[#3e3e3e] p-1 rounded shadow-xl cursor-default whitespace-nowrap z-10 hidden group-hover:block" />
+      {isContextMenuOpen && (
+        <PlaylistContextMenu
+          menuItems={menuItems}
+          classes="absolute top-9 left-9 bg-[#282828] text-[#eaeaea] text-sm divide-y divide-[#3e3e3e] p-1 rounded shadow-xl cursor-default whitespace-nowrap z-10"
+        />
+      )}
     </a>
   );
 }
