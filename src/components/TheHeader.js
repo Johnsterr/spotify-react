@@ -1,11 +1,11 @@
 import { ChevronLeftIcon, ChevronRightIcon, MenuIcon } from "@heroicons/react/outline";
-import TheButtonRegister from "./TheButtonRegister";
-import TheButtonLogin from "./TheButtonLogin";
+import BaseButton from "./BaseButton";
 
-function TheHeader () {
+function TheHeader() {
   return (
     <header
-      className="bg-[#070707] flex-1 flex justify-between items-center py-[10px] px-[13px] sm:px-[32px] sticky top-0 z-10">
+      className="bg-[#070707] flex-1 flex justify-between items-center py-[10px] px-[13px] sm:px-[32px] sticky top-0 z-10"
+    >
       <div className="flex">
         <a href="#sidebar" className="mr-[8px] text-[#969696] p-1 -ml-1.5 inline-block lg:hidden">
           <MenuIcon className="h-6 w-6" />
@@ -18,8 +18,10 @@ function TheHeader () {
         </a>
       </div>
       <div>
-        <TheButtonRegister />
-        <TheButtonLogin />
+        <BaseButton classes="text-gray-400 hover:text-white">
+          Sign up
+        </BaseButton>
+        <BaseButton primary>Log in</BaseButton>
       </div>
     </header>
   );
