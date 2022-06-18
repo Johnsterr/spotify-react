@@ -20,10 +20,11 @@ function TheNav({ showPopover }) {
       label: "Your Library",
       classes: `${navItemClasses} mb-6`,
       icon: <ViewBoardsIcon className="h-6 w-6" />,
-      action: () => {
+      action: (target) => {
         showPopover(
           "Enjoy Your Library",
           "Log in to see saved songs, podcasts, artists, and playlists in Your Library.",
+          target,
         );
       },
     },
@@ -31,10 +32,11 @@ function TheNav({ showPopover }) {
       label: "Create Playlist",
       classes: navItemClasses,
       icon: <PlusCircleIcon className="h-6 w-6" />,
-      action: () => {
+      action: (target) => {
         showPopover(
           "Create a playlist",
           "Log in to create and share playlists.",
+          target,
         );
       },
     },
@@ -42,10 +44,11 @@ function TheNav({ showPopover }) {
       label: "Liked Songs",
       classes: navItemClasses,
       icon: <HeartIcon className="h-6 w-6" />,
-      action: () => {
+      action: (target) => {
         showPopover(
           "Enjoy your Liked Songs",
           "Log in to see all the songs you've liked in one easy playlist.",
+          target,
         );
       },
     },
