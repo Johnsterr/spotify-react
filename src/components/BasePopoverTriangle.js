@@ -1,5 +1,5 @@
 function BasePopoverTriangle() {
-  if (window.innerWidth < 700) {
+  if (window.innerWidth < 900) {
     return (
       <div
         className="w-20 h-20 absolute -left-4 -top-20 flex justify-center items-end overflow-hidden pointer-events-none"
