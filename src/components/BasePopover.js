@@ -21,8 +21,6 @@ function BasePopover(_, ref) {
   const nodeRef = useRef();
 
   useEffect(() => {
-    if (!target) return;
-
     function handleResize() {
       if (screenHasBecomeSmall() || screenHasBecomeWide()) {
         hide();
