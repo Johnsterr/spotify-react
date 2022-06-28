@@ -7,6 +7,7 @@ import {
 } from "react";
 import BaseButton from "./BaseButton";
 import BasePopoverTriangle from "./BasePopoverTriangle";
+import { debounce } from "../utils";
 
 const MIN_DESKTOP_WIDTH = 900;
 
@@ -20,7 +21,6 @@ function BasePopover(_, ref) {
   const [description, setDescription] = useState();
   const nodeRef = useRef();
   const changeWidthTimer = useRef();
-  const resizeTimer = useRef();
 
   useEffect(() => {
     function handleResize() {
@@ -42,13 +42,7 @@ function BasePopover(_, ref) {
       if (!nodeRef.current.contains(event.target)) hide();
     }
 
-    function debounce(callback) {
-      clearTimeout(resizeTimer.current);
-
-      resizeTimer.current = setTimeout(callback, 300);
-    }
-
-    const debounceResize = debounce.bind(null, handleResize);
+    const debounceResize = debounce.bind(null, handleResize, 300);
 
     window.addEventListener("resize", debounceResize);
     document.addEventListener("mousedown", handleClickAway);
