@@ -1,5 +1,6 @@
 import { HomeIcon, SearchIcon, ViewBoardsIcon, PlusCircleIcon, HeartIcon } from "@heroicons/react/outline";
 import NavItem from "./NavItem";
+import { MIN_DESKTOP_WIDTH } from "../utils.js";
 
 const activeNavItemClasses = "flex items-center text-white bg-[#282828] mx-2 px-4 py-2 rounded";
 const navItemClasses = "flex items-center hover:text-white mx-2 px-4 py-2 rounded duration-300";
@@ -47,7 +48,7 @@ function TheNav({ showPopover }) {
       action: (target) => {
         let offset = null;
 
-        if (window.innerWidth >= 900) {
+        if (window.innerWidth >= MIN_DESKTOP_WIDTH) {
           const { top, right, height } = target.getBoundingClientRect();
 
           offset = {
