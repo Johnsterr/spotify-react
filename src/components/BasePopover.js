@@ -1,9 +1,4 @@
-import {
-  useState,
-  useRef,
-  useImperativeHandle,
-  forwardRef,
-} from "react";
+import { useState, useRef, useImperativeHandle, forwardRef } from 'react';
 import useClickAway from '../hooks/useClickAway';
 import usePosition from "../hooks/usePopoverPosition.js";
 import BaseButton from "./BaseButton.js";
