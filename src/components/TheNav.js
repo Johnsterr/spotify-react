@@ -1,4 +1,4 @@
-import { HomeIcon, SearchIcon, ViewBoardsIcon, PlusCircleIcon, HeartIcon } from "@heroicons/react/outline";
+import { HomeIcon, MagnifyingGlassIcon, ViewColumnsIcon, PlusCircleIcon, HeartIcon } from "@heroicons/react/24/outline";
 import NavItem from "./NavItem";
 import { MIN_DESKTOP_WIDTH } from "../utils.js";
 
@@ -15,12 +15,12 @@ function TheNav({ showPopover }) {
     {
       label: "Search",
       classes: navItemClasses,
-      icon: <SearchIcon className="h-6 w-6" />,
+      icon: <MagnifyingGlassIcon className="h-6 w-6" />,
     },
     {
       label: "Your Library",
       classes: `${navItemClasses} mb-6`,
-      icon: <ViewBoardsIcon className="h-6 w-6" />,
+      icon: <ViewColumnsIcon className="h-6 w-6" />,
       action: (target) => {
         showPopover(
           "Enjoy Your Library",
