@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import BaseModal from "./components/BaseModal";
 import BaseToast from "./components/BaseToast";
 import BasePopover from "./components/BasePopover";
 import TheSidebar from "./components/TheSidebar";
@@ -54,6 +55,7 @@ function App() {
       <TheRegistration />
       <BaseToast ref={toastRef} />
       <BasePopover ref={popoverRef} />
+      <BaseModal />
     </>
   );
 }
