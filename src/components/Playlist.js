@@ -12,6 +12,7 @@ function Playlist({
   title,
   description,
   showToast,
+  openModal,
   toggleScrolling,
 }) {
   function generateMenuItems(isAlternate = false) {
@@ -43,6 +44,10 @@ function Playlist({
       },
       {
         label: "About recommendations",
+        action: () => {
+          menu.close();
+          openModal();
+        },
       },
       {
         label: "Open in Desktop app",
