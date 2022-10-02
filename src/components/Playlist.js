@@ -1,4 +1,5 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
+import useEvent from "../hooks/useEvent";
 import useMenu from "../hooks/useContextMenu";
 import PlaylistCover from "./PlaylistCover";
 import PlaylistButtonPlay from "./PlaylistButtonPlay";
@@ -60,25 +61,16 @@ function Playlist({
 
   useLayoutEffect(() => toggleScrolling(!menu.isOpen));
 
-  useEffect(() => {
-    if (!menu.isOpen) return;
+  useEvent("keydown", handleAltKeydown, () => menu.isOpen);
+  useEvent("keyup", handleAltKeyup, () => menu.isOpen);
 
-    function handleAltKeydown({ key }) {
-      if (key === "Alt") setMenuItems(generateMenuItems(true));
-    }
+  function handleAltKeydown({ key }) {
+    if (key === "Alt") setMenuItems(generateMenuItems(true));
+  }
 
-    function handleAltKeyup({ key }) {
-      if (key === "Alt") setMenuItems(generateMenuItems());
-    }
-
-    document.addEventListener("keydown", handleAltKeydown);
-    document.addEventListener("keyup", handleAltKeyup);
-
-    return () => {
-      document.removeEventListener("keydown", handleAltKeydown);
-      document.removeEventListener("keyup", handleAltKeyup);
-    };
-  });
+  function handleAltKeyup({ key }) {
+    if (key === "Alt") setMenuItems(generateMenuItems());
+  }
 
   const bgClasses = menu.isOpen
     ? "bg-[#272727]"
