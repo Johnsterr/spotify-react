@@ -30,7 +30,7 @@ function usePopoverPosition(ref, screenChangeCallback) {
 
   const debounceResize = debounce.bind(null, handleResize, 300);
 
-  useEvent("resize", debounceResize, () => true, window);
+  useEvent("resize", debounceResize, true, window);
 
   function move(target, offset) {
     offset = offset || calculateTargetOffset(target);

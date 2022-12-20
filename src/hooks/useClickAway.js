@@ -1,10 +1,12 @@
 import useEvent from "./useEvent";
 
-function useClickAway(ref, handle, shouldHandle = () => true) {
+function useClickAway(ref, handler, shouldHandle = true) {
   useEvent("mousedown", handleMousedown);
 
   function handleMousedown(event) {
-    if (shouldHandle(event) && !ref.current.contains(event.target)) handle();
+    const handle = shouldHandle instanceof Function ? shouldHandle(event) : shouldHandle;
+
+    if (handle && !ref.current.contains(event.target)) handler();
   }
 }
 

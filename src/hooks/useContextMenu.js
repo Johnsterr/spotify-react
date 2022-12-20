@@ -8,9 +8,9 @@ function useContextMenu(items) {
   const ref = useRef(null);
   const move = usePosition(ref, isOpen);
 
-  useClickAway(ref, close, () => isOpen);
+  useClickAway(ref, close, isOpen);
 
-  useEvent("keydown", handleEsc, () => isOpen);
+  useEvent("keydown", handleEsc, isOpen);
 
   function handleEsc({ key }) {
     if (key === "Escape") close();

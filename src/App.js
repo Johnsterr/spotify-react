@@ -17,12 +17,7 @@ function App() {
 
   let isScrollingEnabled = true;
 
-  useEvent(
-    "wheel",
-    handleScrolling,
-    () => true,
-    () => contentWrapperRef.current,
-  );
+  useEvent("wheel", handleScrolling, true, () => contentWrapperRef.current);
 
   function openModal() {
     setIsModalOpen(true);
