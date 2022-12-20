@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import { useEffect, useRef } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import useEvent from "../hooks/useEvent";
@@ -27,7 +28,7 @@ function BaseModal({ onClose: handleClose }) {
     contentRef.current.classList.toggle("-translate-y-10", isClosing);
   }
 
-  return (
+  return ReactDOM.createPortal(
     <div
       className="fixed inset-0 bg-black/70 z-30 flex justify-center items-center opacity-0 transition-opacity duration-500"
       role="dialog"
@@ -63,7 +64,8 @@ function BaseModal({ onClose: handleClose }) {
           perspiciatis nam nihil!
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

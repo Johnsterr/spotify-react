@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import useEvent from "../hooks/useEvent";
 import useMenu from "../hooks/useContextMenu";
+import BaseModal from "./BaseModal";
 import PlaylistCover from "./PlaylistCover";
 import PlaylistButtonPlay from "./PlaylistButtonPlay";
 import PlaylistTitle from "./PlaylistTitle";
@@ -13,7 +14,6 @@ function Playlist({
   title,
   description,
   showToast,
-  openModal,
   toggleScrolling,
 }) {
   function generateMenuItems(isAlternate = false) {
@@ -57,6 +57,7 @@ function Playlist({
   }
 
   const [menuItems, setMenuItems] = useState(generateMenuItems);
+  const [isModalOpen, setIsModalOpen] = useState();
   const menu = useMenu(menuItems);
 
   useLayoutEffect(() => toggleScrolling(!menu.isOpen));
@@ -70,6 +71,14 @@ function Playlist({
 
   function handleAltKeyup({ key }) {
     if (key === "Alt") setMenuItems(generateMenuItems());
+  }
+
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
   }
 
   const bgClasses = menu.isOpen
@@ -96,6 +105,7 @@ function Playlist({
           classes="fixed divide-y divide-[#3e3e3e]"
         />
       )}
+      {isModalOpen && <BaseModal onClose={closeModal} />}
     </a>
   );
 }
