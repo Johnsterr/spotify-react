@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import useEvent from "./useEvent";
 import { MIN_DESKTOP_WIDTH, debounce } from "../utils.js";
 
 function isCurrentWindowWidthSmall() {
@@ -14,26 +15,22 @@ function usePopoverPosition(ref, screenChangeCallback) {
   const [target, setTarget] = useState();
   const changeWidthTimer = useRef();
 
-  useEffect(() => {
-    function handleResize() {
-      if (!screenHasBecomeSmall() && !screenHasBecomeBig()) return;
+  function handleResize() {
+    if (!screenHasBecomeSmall() && !screenHasBecomeBig()) return;
 
-      screenChangeCallback();
+    screenChangeCallback();
 
-      clearTimeout(changeWidthTimer.current);
+    clearTimeout(changeWidthTimer.current);
 
-      changeWidthTimer.current = setTimeout(
-        () => setIsSmallScreen(isCurrentWindowWidthSmall),
-        300,
-      );
-    }
+    changeWidthTimer.current = setTimeout(
+      () => setIsSmallScreen(isCurrentWindowWidthSmall),
+      300,
+    );
+  }
 
-    const debounceResize = debounce.bind(null, handleResize, 300);
+  const debounceResize = debounce.bind(null, handleResize, 300);
 
-    window.addEventListener("resize", debounceResize);
-
-    return () => window.removeEventListener("resize", debounceResize);
-  });
+  useEvent("resize", debounceResize, () => true, window);
 
   function move(target, offset) {
     offset = offset || calculateTargetOffset(target);
