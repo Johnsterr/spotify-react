@@ -7,6 +7,7 @@ import PlaylistButtonPlay from "./PlaylistButtonPlay";
 import PlaylistTitle from "./PlaylistTitle";
 import PlaylistDescription from "./PlaylistDescription";
 import PlaylistContextMenu from "./PlaylistContextMenu";
+import TheModalEmbedPlaylist from "./TheModalEmbedPlaylist";
 import TheModalRecommendations from "./TheModalRecommendations";
 
 function Playlist({
@@ -41,6 +42,10 @@ function Playlist({
           },
           {
             label: "Embed playlist",
+            action: () => {
+              menu.close();
+              embedPlaylistModal.open();
+            },
           },
         ],
       },
@@ -48,7 +53,7 @@ function Playlist({
         label: "About recommendations",
         action: () => {
           menu.close();
-          modal.open();
+          recommendationsModal.open();
         },
       },
       {
@@ -59,7 +64,8 @@ function Playlist({
 
   const [menuItems, setMenuItems] = useState(generateMenuItems);
   const menu = useMenu(menuItems);
-  const modal = useModal();
+  const embedPlaylistModal = useModal();
+  const recommendationsModal = useModal();
 
   useLayoutEffect(() => toggleScrolling(!menu.isOpen));
 
@@ -98,7 +104,12 @@ function Playlist({
           classes="fixed divide-y divide-[#3e3e3e]"
         />
       )}
-      {modal.isOpen && <TheModalRecommendations onClose={modal.close} />}
+      {recommendationsModal.isOpen && (
+        <TheModalRecommendations onClose={recommendationsModal.close} />
+      )}
+      {embedPlaylistModal.isOpen && (
+        <TheModalEmbedPlaylist onClose={embedPlaylistModal.close} />
+      )}
     </a>
   );
 }
