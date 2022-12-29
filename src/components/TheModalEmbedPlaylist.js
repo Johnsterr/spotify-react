@@ -1,23 +1,21 @@
+import BaseButton from "./BaseButton";
 import BaseModal from "./BaseModal";
 
 function TheModalEmbedPlaylist({ onClose: handleClose }) {
   return (
-    <BaseModal onClose={handleClose}>
-      <h1 className="text-3xl pt-8 pb-3 px-8 font-bold leading-relaxed border-b border-neutral-600">
+    <BaseModal classes="w-[660px] bg-neutral-900" onClose={handleClose}>
+      <h1 className="text-3xl pt-8 pb-3 px-8 font-bold leading-relaxed">
         Embed Playlist
       </h1>
-      <div className="py-6 px-8 overflow-y-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quis
-        impedit cum quo provident alias commodi expedita accusantium sit natus
-        autem voluptates possimus ducimus necessitatibus numquam eum, nostrum
-        saepe quidem. Aspernatur, aperiam! Labore est maxime velit doloremque
-        saepe eos placeat blanditiis, consequatur, voluptatem obcaecati dolorem
-        et quas quaerat neque odio, dicta tempora architecto optio voluptatum
-        dolorum officia aliquam voluptates accusantium quis! Illum eaque
-        quibusdam sit et. Enim excepturi cum numquam deserunt facere sit
-        provident debitis tenetur voluptatem quidem. Fuga dolores animi aliquam
-        accusantium molestiae iure molestias, harum voluptatibus sunt ratione,
-        sapiente hic architecto ipsum quasi enim? Quasi perspiciatis nam nihil!
+      <div className="py-6 px-8 text-neutral-500 text-[13px]">
+        Lorem ipsum dolor sit amet{" "}
+        <a href="/" className="text-white font-bold hover:underline">
+          consectetur adipisicing elit
+        </a>
+        . Aliquam sit perferendis soluta architecto? Adipisci, atque.
+      </div>
+      <div className="text-right pb-6 px-8">
+        <BaseButton primary>Copy</BaseButton>
       </div>
     </BaseModal>
   );

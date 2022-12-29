@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import useEvent from "../hooks/useEvent";
 
-function BaseModal({ onClose: handleClose, children }) {
+function BaseModal({ classes, onClose: handleClose, children }) {
   const ref = useRef();
   const contentRef = useRef();
 
@@ -36,7 +36,7 @@ function BaseModal({ onClose: handleClose, children }) {
       onClick={close}
     >
       <div
-        className="flex flex-col relative bg-[#333] text-white h-80 w-[480px] rounded-xl -translate-y-10 transition-transform duration-500"
+        className={`flex flex-col relative text-white rounded-xl -translate-y-10 transition-transform duration-500 ${classes}`}
         ref={contentRef}
         onClick={(event) => event.stopPropagation()}
       >
